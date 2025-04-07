@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <link rel="stylesheet" href="{% static 'inventory_app/styles.css' %}">
+</head>
+<body>
+    {% include 'inventory_app/base.html' %}
+    <div class="container">
+        <h1>Product List</h1>
+        <a href="{% url 'product_add' %}">Add New Product</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if products %}
+                    {% for product in products %}
+                    <tr>
+                        <td>{{ product.id }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100px; height: auto;">
+                        </td>
+                        <td>
+                            <a href="{% url 'product_detail' product.pk %}">View</a>
+                            <a href="{% url 'product_edit' product.pk %}">Edit</a>
+                            <a href="{% url 'product_delete' product.pk %}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5">No products available.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

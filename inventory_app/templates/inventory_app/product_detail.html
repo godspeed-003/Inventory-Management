@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="{% static 'inventory_app/styles.css' %}">
+</head>
+<body>
+    {% include 'inventory_app/base.html' %}
+    <div class="container">
+        <h1>Product Detail</h1>
+        {% if product %}
+            <div class="product-details">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 300px;">
+                <h2>{{ product.name }}</h2>
+                <p><strong>ID:</strong> {{ product.id }}</p>
+                <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+                <p><strong>Price:</strong> ${{ product.price }}</p>
+                <div class="actions">
+                    <a href="{% url 'product_edit' product.pk %}" class="btn">Edit</a>
+                    <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'product_list' %}" class="btn">Back to List</a>
+                </div>
+            </div>
+        {% else %}
+            <p>Product not found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
