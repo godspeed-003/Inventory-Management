@@ -1,0 +1,12 @@
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div>
+        <label for="image_filename">Image Filename:</label>
+        <input type="text" id="image_filename" name="image_filename" placeholder="Enter image filename">
+    </div>
+    <div>
+        <p><strong>Current Quantity:</strong> {{ product.quantity }}</p>
+    </div>
+    <button type="submit">Save</button>
+</form>

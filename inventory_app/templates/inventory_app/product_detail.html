@@ -13,7 +13,11 @@
         <h1>Product Detail</h1>
         {% if product %}
             <div class="product-details">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 300px;">
+                {% if product.image %}
+                <div>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 300px;">
+                </div>
+                {% endif %}
                 <h2>{{ product.name }}</h2>
                 <p><strong>ID:</strong> {{ product.id }}</p>
                 <p><strong>Quantity:</strong> {{ product.quantity }}</p>
